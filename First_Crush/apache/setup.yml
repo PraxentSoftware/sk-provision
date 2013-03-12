@@ -1,0 +1,20 @@
+---
+- name: apache | install apache
+  action: apt pkg=apache2 state=installed
+
+- name: apache | enable required modules
+  action: command a2enmod rewrite vhost_alias
+
+- name: apache | ports configuration
+  action: copy src='apache/files/ports.conf' dest='/etc/apache2/ports.conf'
+
+- name: apache | vhost
+  action: copy src='apache/files/prod-vhost' dest='/etc/apache2/sites-available/prod-vhost'
+
+- name: apache | disable default site
+  action: command a2dissite default
+
+- name: apache | enable vhost
+  action: command a2ensite prod-vhost
+  notify:
+  - restart apache

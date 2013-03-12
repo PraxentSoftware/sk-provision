@@ -1,0 +1,15 @@
+---
+- hosts: webservers
+  user: $user
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: update apt repo
+      action: apt-cache update=yes
+
+    - include: tasks.yml
+
+  handlers:
+    - include: handler.yml

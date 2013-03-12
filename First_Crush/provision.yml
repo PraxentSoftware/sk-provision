@@ -1,0 +1,26 @@
+---
+- hosts: webservers
+  user: vagrant
+  sudo: True
+
+  vars_files:
+    - php/vars.yml
+    - varnish/vars.yml
+
+  tasks:
+    - name: update apt repo
+      action: apt update-cache=yes
+
+    - include: apache/setup.yml
+    - include: drush/setup.yml
+    - include: mysql/setup.yml
+    - include: node/setup.yml
+    - include: php/setup.yml
+    - include: redis/setup.yml
+    - include: tools/setup.yml
+    - include: varnish/setup.yml
+
+  handlers:
+    - include: apache/handler.yml
+    - include: mysql/handler.yml
+    - include: varnish/handler.yml

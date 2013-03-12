@@ -1,0 +1,9 @@
+---
+- hosts: webservers
+  user: $user
+
+  tasks:
+    - name: apache | update apt repo
+      action: apt update-cache=yes
+
+    - include: setup.yml

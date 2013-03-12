@@ -1,0 +1,28 @@
+[alias]
+  br = branch
+  ci = commit
+  cia = commit -a
+  co = checkout
+  df = diff
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  st = status
+  sth = stash
+  up = pull origin
+  who = shortlog -s --
+  spull = !git-svn rebase
+  spush = !git-svn dcommit
+  ddiff = !git-diff --no-prefix
+  # `git last 2 user` displays last two days of commits on all local and remote branches for user
+  # user can be left off to display your own
+  last = "!fn() { S=1; A=`git config --get user.name`; if [ -n \"$1\" ]; then S=\"$1\"; shift; fi; if [ -n \"$1\" ]; then if [ \"$1\" != \"me\" ]; then A=\"$1\"; fi; shift; fi; git log -i --since=\"$S days ago\" --author=\"$A\" --branches --remotes --format='%C(yellow)%t%Creset %s (%an)' \"$@\"; }; fn"
+[color]
+  ui = auto
+  branch = auto
+  diff = auto
+  status = auto
+[push]
+  default = tracking
+[remote "origin"]
+  push = HEAD
+[branch]
+  autosetupmerge = true

@@ -1,0 +1,9 @@
+---
+- name: redis | install redis
+  action: apt pkg=redis-server state=installed
+
+- name: redis | copy phpredis.deb
+  action: copy src='redis/files/phpredis-2.2.2_x86_64.deb' dest='/tmp'
+
+- name: redis | install phpredis
+  action: command dpkg -i /tmp/phpredis-2.2.2_x86_64.deb

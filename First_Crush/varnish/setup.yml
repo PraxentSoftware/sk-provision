@@ -1,0 +1,12 @@
+---
+- name: varnish | install varnish
+  action: apt pkg=varnish state=installed
+
+- name: varnish | copy config
+  template: src='varnish/templates/varnish.j2' dest='/etc/default/varnish'
+
+- name: varnish | copy vcl
+  action: copy src='varnish/files/active.vcl' dest='/etc/varnish/active.vcl' mode='644'
+  notify:
+    - restart varnish
+
