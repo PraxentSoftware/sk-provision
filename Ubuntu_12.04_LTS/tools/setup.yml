@@ -26,3 +26,5 @@
 
 - action: startup script for iptables
   action: copy src='tools/files/load-iptables-rules' dest='/etc/network/if-pre-up.d/load-iptables-rules' mode='755'
+  notify:
+    - restart network

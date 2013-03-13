@@ -1,0 +1,13 @@
+---
+- hosts: webservers
+  user: $user
+
+  tasks:
+    - name: mongo | update apt repo
+      action: apt update-cache=yes
+
+    - include: setup.yml
+
+  handlers:
+     - include: handler.yml
+

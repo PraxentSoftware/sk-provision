@@ -9,4 +9,4 @@
     - include: setup.yml
 
   handlers:
-    include: handler.yml
+    - include: handler.yml

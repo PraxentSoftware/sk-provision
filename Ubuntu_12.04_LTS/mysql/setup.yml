@@ -8,13 +8,13 @@
 - name: mysql | install client
   action: apt name=mysql-client state=installed
 
+- name: mysql | write my.cnf
+  action: template src='mysql/templates/my.cnf.j2' dest='/etc/mysql/my.cnf'
+  notify:
+    - restart mysql
+
 - name: mysql | service mysql
   action: service name=mysql state=started
 
 - name: mysql | remove test database
   action: mysql_db db=test state=absent
-
-- name: mysql | write my.cnf
-  action: template src='mysql/templates/my.cnf.j2' dest='/etc/mysql/my.cnf'
-  notify:
-  - restart mysql
