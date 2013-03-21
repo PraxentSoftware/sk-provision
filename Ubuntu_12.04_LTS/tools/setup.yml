@@ -14,18 +14,18 @@
     - unzip
 
 - name: configure git
-  action: copy src='tools/files/gitconfig' dest='/etc/gitconfig' mode='644'
+  action: copy src='$base/tools/files/gitconfig' dest='/etc/gitconfig' mode='644'
 
 - name: configure emacs
-  action: copy src='tools/files/site-start.el' dest='/etc/emacs/site-start.el' mode='644'
+  action: copy src='$base/tools/files/site-start.el' dest='/etc/emacs/site-start.el' mode='644'
 
 - name: bash prompt
-  action: copy src='tools/files/bash-prompt.sh' dest='/etc/profile.d/bash-prompt.sh' mode='755'
+  action: copy src='$base/tools/files/bash-prompt.sh' dest='/etc/profile.d/bash-prompt.sh' mode='755'
 
 - name: configure iptables
-  action: copy src='tools/files/iptables-rules' dest='/etc/iptables-rules' mode='644'
+  action: copy src='$base/tools/files/iptables-rules' dest='/etc/iptables-rules' mode='644'
 
 - action: startup script for iptables
-  action: copy src='tools/files/load-iptables-rules' dest='/etc/network/if-pre-up.d/load-iptables-rules' mode='755'
+  action: copy src='$base/tools/files/load-iptables-rules' dest='/etc/network/if-pre-up.d/load-iptables-rules' mode='755'
   notify:
     - restart network

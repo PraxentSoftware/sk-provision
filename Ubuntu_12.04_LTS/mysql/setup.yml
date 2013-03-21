@@ -9,7 +9,7 @@
   action: apt name=mysql-client state=installed
 
 - name: mysql | write my.cnf
-  action: template src='mysql/templates/my.cnf.j2' dest='/etc/mysql/my.cnf'
+  action: template src='$base/mysql/templates/my.cnf.j2' dest='/etc/mysql/my.cnf'
   notify:
     - restart mysql
 

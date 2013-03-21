@@ -2,6 +2,9 @@
 - hosts: webservers
   user: $user
 
+  vars:
+    #base: $PIPE(git rev-parse --show-toplevel)
+
   tasks:
     - name: apache | update apt repo
       action: apt update-cache=yes

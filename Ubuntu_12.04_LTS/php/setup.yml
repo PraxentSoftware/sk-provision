@@ -12,10 +12,10 @@
     - php-pear
 
 - name: php | write php.ini
-  action: template src='php/templates/php.ini.j2' dest='/etc/php5/apache2/php.ini'
+  action: template src='$base/php/templates/php.ini.j2' dest='/etc/php5/apache2/php.ini'
 
 - name: php | write apc.ini
-  action: template src='php/templates/apc.ini.j2' dest='/etc/php5/apache2/conf.d/apc.ini'
+  action: template src='$base/php/templates/apc.ini.j2' dest='/etc/php5/apache2/conf.d/apc.ini'
 
 # PECL Packages
 
@@ -29,4 +29,4 @@
   when_string: ${php_pecl_mongo_exists.stdout} == ''
 
 - name: php | write mongo.ini
-  action: copy src='php/files/mongo.ini' dest='/etc/php5/apache2/conf.d/mongo.ini' mode='644'
+  action: copy src='$base/php/files/mongo.ini' dest='/etc/php5/apache2/conf.d/mongo.ini' mode='644'

@@ -3,28 +3,34 @@
   user: vagrant
   sudo: True
 
+  # Base path for includes and files
+  # MUST BE SET TO ABSOLUTE PATH TO TOP OF PLAYBOOKS DIRECTORY
+  vars:
+    # Set base path to (root of git repository)/OS
+    base: /path/to/playbooks
+
   vars_files:
-    - mysql/vars.yml
-    - php/vars.yml
-    - varnish/vars.yml
+    - $base/mysql/vars.yml
+    - $base/php/vars.yml
+    - $base/varnish/vars.yml
 
   tasks:
     - name: update apt repo
       action: apt update-cache=yes
 
-    - include: apache/setup.yml
-    - include: drush/setup.yml
-    - include: mysql/setup.yml
-    - include: mongodb/setup.yml
-    - include: node/setup.yml
-    - include: php/setup.yml
-    - include: redis/setup.yml
-    - include: tools/setup.yml
-    - include: varnish/setup.yml
+    - include: $base/apache/setup.yml
+    - include: $base/drush/setup.yml
+    - include: $base/mysql/setup.yml
+    - include: $base/mongodb/setup.yml
+    - include: $base/node/setup.yml
+    - include: $base/php/setup.yml
+    - include: $base/redis/setup.yml
+    - include: $base/tools/setup.yml
+    - include: $base/varnish/setup.yml
 
-   handlers:
-    - include: apache/handler.yml
-    - include: mysql/handler.yml
-    - include: mongodb/handler.yml
-    - include: tools/handler.yml
-    - include: varnish/handler.yml
+  handlers:
+    - include: $base/apache/handler.yml
+    - include: $base/mysql/handler.yml
+    - include: $base/mongodb/handler.yml
+    - include: $base/tools/handler.yml
+    - include: $base/varnish/handler.yml
