@@ -10,6 +10,3 @@
 
 - name: node | install node
   action: apt pkg=nodejs state=installed
-
-- name: node | install npm
-  action: apt pkg=npm state=installed

@@ -1,5 +1,5 @@
 ---
-- hosts: webservers
+- hosts: firstcrush
   user: vagrant
   sudo: True
 
@@ -22,7 +22,7 @@
     - include: tools/setup.yml
     - include: varnish/setup.yml
 
-  handlers:
+   handlers:
     - include: apache/handler.yml
     - include: mysql/handler.yml
     - include: mongodb/handler.yml

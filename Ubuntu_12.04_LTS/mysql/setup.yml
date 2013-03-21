@@ -15,6 +15,3 @@
 
 - name: mysql | service mysql
   action: service name=mysql state=started
-
-- name: mysql | remove test database
-  action: mysql_db db=test state=absent
