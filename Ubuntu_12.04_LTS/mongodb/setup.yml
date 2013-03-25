@@ -1,12 +1,12 @@
 ---
 - name: mongodb | add 10gen apt key
-  action: apt_key: id=7F0CEB10 url=keyserver.ubuntu.com
+  action: command apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
 
 - name: mongodb | get 10gen repo
-  action: command add-apt-repository repo='deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' creates=/etc/apt/sources.list.d/mongodb.list
+  action: copy src=$base/mongodb/files/apt-source-mongodb dest=/etc/apt/sources.list.d/10gen.list mode=755
 
 - name: mongodb | update apt repo
   action: apt update-cache=yes
 
 - name: mongodb | install mongodb
-  action: apt pkg=mongodb state=installed
+  action: apt pkg=mongodb-10gen=2.4.1 state=installed

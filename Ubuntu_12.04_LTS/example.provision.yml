@@ -15,8 +15,13 @@
     - $base/varnish/vars.yml
 
   tasks:
+    # Required initial update of apt repo
     - name: update apt repo
       action: apt update-cache=yes
+
+    # Ansible dependency - for apt-add-repository
+    - name: node | get deps
+      action: apt pkg=python-software-properties state=installed
 
     - include: $base/apache/setup.yml
     - include: $base/drush/setup.yml

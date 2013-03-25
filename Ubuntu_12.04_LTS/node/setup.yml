@@ -1,7 +1,4 @@
 ---
-- name: node | get deps
-  action: apt pkg=python-software-properties state=installed
-
 - name: node | get node repo
   action: command add-apt-repository -y ppa:chris-lea/node.js creates=/etc/apt/sources.list.d/chris-lea-node_js-precise.list
 
