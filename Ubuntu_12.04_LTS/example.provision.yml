@@ -1,5 +1,5 @@
 ---
-- hosts: firstcrush
+- hosts: web-servers
   user: vagrant
   sudo: True
 
