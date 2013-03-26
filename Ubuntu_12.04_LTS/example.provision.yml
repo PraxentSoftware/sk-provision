@@ -1,12 +1,11 @@
 ---
-- hosts: firstcrush
+- hosts: webservers
   user: vagrant
   sudo: True
 
-  # Base path for includes and files
-  # MUST BE SET TO ABSOLUTE PATH TO TOP OF PLAYBOOKS DIRECTORY
   vars:
-    # Set base path to (root of git repository)/OS
+    # Base path for includes and files
+    # Must be set to absolute path of playbooks directory
     base: /path/to/playbooks
 
   vars_files:
