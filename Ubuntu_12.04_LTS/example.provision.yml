@@ -29,6 +29,7 @@
     - include: $base/node/setup.yml
     - include: $base/php/setup.yml
     - include: $base/redis/setup.yml
+    - include: $base/ruby-css/setup.yml
     - include: $base/tools/setup.yml
     - include: $base/varnish/setup.yml
 
