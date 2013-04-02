@@ -1,0 +1,3 @@
+---
+- name: phpcs | install
+  command: pear install PHP_CodeSniffer
