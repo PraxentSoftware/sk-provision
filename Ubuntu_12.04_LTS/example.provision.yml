@@ -3,10 +3,9 @@
   user: vagrant
   sudo: True
 
-  # Base path for includes and files
-  # MUST BE SET TO ABSOLUTE PATH TO TOP OF PLAYBOOKS DIRECTORY
   vars:
-    # Set base path to (root of git repository)/OS
+    # Base path for includes and files
+    # Must be set to absolute path of playbooks directory
     base: /path/to/playbooks
 
   vars_files:
@@ -20,7 +19,7 @@
       action: apt update-cache=yes
 
     # Ansible dependency - for apt-add-repository
-    - name: node | get deps
+    - name: ansible | get deps
       action: apt pkg=python-software-properties state=installed
 
     - include: $base/apache/setup.yml
@@ -30,6 +29,7 @@
     - include: $base/node/setup.yml
     - include: $base/php/setup.yml
     - include: $base/redis/setup.yml
+    - include: $base/ruby-css/setup.yml
     - include: $base/tools/setup.yml
     - include: $base/varnish/setup.yml
 

@@ -1,9 +1,13 @@
 ---
-- hosts: webservers
+- hosts: $hosts
   user: $user
 
   tasks:
     - name: update apt repo
       action: apt update-cache=yes
+
+    # Ansible dependency - for apt-add-repository
+    - name: ansible | get deps
+      action: apt pkg=python-software-properties state=installed
 
     - include: setup.yml

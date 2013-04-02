@@ -1,0 +1,15 @@
+---
+- name: ruby-css | install rubygems package
+  action: apt pkg=rubygems state=installed
+
+- name: ruby-css | install sass
+  action: command gem install sass creates=/usr/local/bin/sass
+
+- name: ruby-css | install susy (no more --pre required as it is 1.0 now)
+  action: command gem install susy
+
+- name: ruby-css | install compass
+  action: command gem install compass creates=/usr/local/bin/compass
+
+- name: ruby-css | install aurora (which will install breakpoint, sass-buttons, respond-to)
+  action: command gem install compass-aurora

@@ -2,6 +2,9 @@
 - hosts: webservers
   user: $user
 
+  vars:
+    base: .
+
   tasks:
     - name: update apt repo
       action: apt update-cache=yes
