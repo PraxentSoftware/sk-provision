@@ -1,17 +1,29 @@
 ---
-# - name: jenkins | add key
-#   shell: wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+- name: jenkins | add key
+  shell: wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
 
-# - name: jenkins | add repository
-#   action: copy src=$base/jenkins/files/apt-source-jenkins dest=/etc/apt/sources.list.d/jenkins.list mode=755
+- name: jenkins | add repository
+  action: copy src=$base/jenkins/files/apt-source-jenkins dest=/etc/apt/sources.list.d/jenkins.list mode=755
 
-# - name: jenkins | update apt repository
-#   action: apt update-cache=yes
+- name: jenkins | update apt repository
+  action: apt update-cache=yes
 
-# - name: jenkins | install
-#   action: apt pkg=jenkins state=installed
+- name: jenkins | install
+  action: apt pkg=jenkins state=installed
 
 - name: jenkins | configure defaults
-  template: src=$base/jenkins/templates/defaults dest=/etc/default/jenkins mode=644
+  template: src=$base/jenkins/templates/defaults.j2 dest=/etc/default/jenkins mode=644
   notify:
   - restart jenkins
+
+- name: jenkins | vhost
+  template: src=$base/jenkins/templates/vhost.j2 dest=/etc/apache2/sites-available/jenkins
+
+- name: jenkins | enable required modules
+  command: a2enmod proxy proxy_http
+
+- name: jenkins | enable vhost
+  command: a2ensite jenkins
+  notify:
+  - restart apache
+

@@ -1,0 +1,11 @@
+<VirtualHost *:{{ apache_port }}>
+  ServerAdmin {{ apache_server_admin }}
+  ServerName {{ jenkins_server_name }}
+  ProxyRequests Off
+  <Proxy *>
+    Order deny,allow
+    Allow from all
+  </Proxy>
+  ProxyPreserveHost on
+  ProxyPass / http://localhost:{{ jenkins_port }}/
+</VirtualHost>

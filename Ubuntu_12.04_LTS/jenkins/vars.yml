@@ -1,2 +1,4 @@
 ---
 jenkins_port: 8282
+jenkins_server_name: jenkins
+
