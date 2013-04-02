@@ -6,7 +6,7 @@
   template: src='$base/varnish/templates/varnish.j2' dest='/etc/default/varnish'
 
 - name: varnish | copy vcl
-  action: copy src='$base/varnish/files/active.vcl' dest='/etc/varnish/active.vcl' mode='644'
+  template: src='$base/varnish/templates/active.j2' dest='/etc/varnish/active.vcl' mode='644'
   notify:
     - restart varnish
 

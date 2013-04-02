@@ -7,11 +7,14 @@
     # Base path for includes and files
     # Must be set to absolute path of playbooks directory
     base: /path/to/playbooks
+    env: dev # Set to dev or prod
 
   vars_files:
+    - $base/apache/vars.yml
     - $base/mysql/vars.yml
     - $base/php/vars.yml
     - $base/varnish/vars.yml
+    - provision_overrides/${env}_vars.yml
 
   tasks:
     # Required initial update of apt repo
@@ -32,6 +35,7 @@
     - include: $base/ruby-css/setup.yml
     - include: $base/tools/setup.yml
     - include: $base/varnish/setup.yml
+  # - include: provision_overrides/setup.yml
 
   handlers:
     - include: $base/apache/handler.yml
