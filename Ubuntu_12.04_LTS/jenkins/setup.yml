@@ -1,0 +1,17 @@
+---
+# - name: jenkins | add key
+#   shell: wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+
+# - name: jenkins | add repository
+#   action: copy src=$base/jenkins/files/apt-source-jenkins dest=/etc/apt/sources.list.d/jenkins.list mode=755
+
+# - name: jenkins | update apt repository
+#   action: apt update-cache=yes
+
+# - name: jenkins | install
+#   action: apt pkg=jenkins state=installed
+
+- name: jenkins | configure defaults
+  template: src=$base/jenkins/templates/defaults dest=/etc/default/jenkins mode=644
+  notify:
+  - restart jenkins

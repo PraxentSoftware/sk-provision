@@ -14,17 +14,14 @@
     - $base/mysql/vars.yml
     - $base/php/vars.yml
     - $base/varnish/vars.yml
+    - $base/jenkins/vars.yml
     - provision_overrides/${env}_vars.yml
 
   tasks:
-    # Required initial update of apt repo
-    - name: update apt repo
-      action: apt update-cache=yes
+    # -= REQUIRED =-
+    - include: $base/common/setup.yml
 
-    # Ansible dependency - for apt-add-repository
-    - name: ansible | get deps
-      action: apt pkg=python-software-properties state=installed
-
+    # -= OPTIONAL =-
     - include: $base/apache/setup.yml
     - include: $base/drush/setup.yml
     - include: $base/mysql/setup.yml
@@ -35,11 +32,14 @@
     - include: $base/ruby-css/setup.yml
     - include: $base/tools/setup.yml
     - include: $base/varnish/setup.yml
+    - include: $base/jenkins/setup.yml
   # - include: provision_overrides/setup.yml
 
   handlers:
+    # -= OPTIONAL =-
     - include: $base/apache/handler.yml
     - include: $base/mysql/handler.yml
     - include: $base/mongodb/handler.yml
     - include: $base/tools/handler.yml
     - include: $base/varnish/handler.yml
+    - include: $base/jenkins/handler.yml
