@@ -3,7 +3,7 @@
   user: $user
 
   vars:
-    #base: $PIPE(git rev-parse --show-toplevel)
+    base: .
 
   tasks:
     - name: apache | update apt repo

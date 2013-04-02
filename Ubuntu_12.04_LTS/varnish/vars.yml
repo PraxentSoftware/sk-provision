@@ -1,2 +1,2 @@
 ---
-varnish_memory: '1g'
+varnish_memory: '1G'
