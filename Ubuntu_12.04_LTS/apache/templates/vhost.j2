@@ -1,13 +1,20 @@
 ##
-# Production vhost on port 8080 for use with varnish
+# Production vhost on {{ apache_port }}
 #
 
-<VirtualHost *:8080>
+<VirtualHost *:{{ apache_port }}>
+  ServerAdmin support@astonishdesign.com
+
+  # Will map [domain].[ext] to /var/www/[domain]/htdocs
   VirtualDocumentRoot /var/www/%-2/htdocs
+
   UseCanonicalName Off
 
+  # Pretty log formats for integration with log analysis software
+  {% raw %}
   LogFormat "{ \"@timestamp\": \"%{%Y-%m-%dT%H:%M:%S%z}t\", \"@fields\": { \"client\": \"%{X-Forwarded-For}i\", \"duration_usec\": %D, \"status\": %s, \"request\": \"%U%q\", \"method\": \"%m\", \"referrer\": \"%{Referer}i\", \"agent\": \"%{User-agent}i\" }}" json
   CustomLog /var/log/apache2/access.log json
+  {% endraw %}
 
   <Directory /var/www/*>
     Options -Indexes +FollowSymLinks
