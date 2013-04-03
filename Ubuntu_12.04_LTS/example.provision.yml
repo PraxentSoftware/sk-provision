@@ -23,6 +23,8 @@
     - include: $base/common/setup.yml
 
     # -= OPTIONAL =-
+    - include: $base/python/setup.yml
+    - include: $base/ansible/setup.yml
     - include: $base/apache/setup.yml
     - include: $base/drush/setup.yml
     - include: $base/php/setup.yml
