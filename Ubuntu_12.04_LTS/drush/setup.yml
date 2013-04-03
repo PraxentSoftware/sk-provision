@@ -23,8 +23,6 @@
 - name: drush | install drush
   command: pear install drush/drush
   only_if: "'${drush_exists.stdout}' == ''"
-
-- name: drush | init drush
-  sudo: false
-  command: drush
+  notify:
+    - init drush
 

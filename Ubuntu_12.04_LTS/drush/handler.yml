@@ -1,0 +1,7 @@
+---
+- name: init drush
+  command: drush
+  sudo: false
+
+- name: clear drush cache
+  command: drush cache-clear drush

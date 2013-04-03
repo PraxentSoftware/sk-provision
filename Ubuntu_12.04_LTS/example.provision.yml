@@ -2,6 +2,7 @@
 - hosts: web-servers
   user: vagrant
   sudo: True
+  gather_facts: no  # Enable for vagrant boxes to save time
 
   vars:
     # Base path for includes and files
@@ -15,7 +16,7 @@
     - $base/php/vars.yml
     - $base/varnish/vars.yml
     - $base/jenkins/vars.yml
-    - provision_overrides/${env}_vars.yml
+    - provision_overrides/${env}_vars.yml # Enable for variable overrides for the current environment
 
   tasks:
     # -= REQUIRED =-
@@ -24,22 +25,23 @@
     # -= OPTIONAL =-
     - include: $base/apache/setup.yml
     - include: $base/drush/setup.yml
+    - include: $base/php/setup.yml
+    - include: $base/phpcs/setup.yml
     - include: $base/mysql/setup.yml
     - include: $base/mongodb/setup.yml
     - include: $base/node/setup.yml
-    - include: $base/php/setup.yml
-    - include: $base/phpcs/setup.yml
     - include: $base/redis/setup.yml
     - include: $base/ruby-css/setup.yml
     - include: $base/tools/setup.yml
     - include: $base/varnish/setup.yml
     - include: $base/jenkins/setup.yml
-  # - include: provision_overrides/setup.yml
+  # - include: provision_overrides/setup.yml # Enable for custom tasks
 
   handlers:
     # -= OPTIONAL =-
     - include: $base/apache/handler.yml
     - include: $base/mysql/handler.yml
+    - include: $base/drush/handler.yml
     - include: $base/mongodb/handler.yml
     - include: $base/tools/handler.yml
     - include: $base/varnish/handler.yml

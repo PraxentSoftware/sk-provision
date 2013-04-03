@@ -7,7 +7,6 @@
   only_if: "'${phpcs_exists.stdout}' == ''"
 
 - name: phpcs | install coder
-  shell: wget -O .drush/coder.tar.gz http://ftp.drupal.org/files/projects/coder-7.x-2.0-beta2.tar.gz; tar -xvz -C .drush -f .drush/coder.tar.gz; rm .drush/coder.tar.gz
-
-- name: phpcs | clear drush cache
-  command: drush cache-clear drush
+  command: drush dl coder --destination=.drush creates=.drush/coder
+  notify:
+    - clear drush cache
