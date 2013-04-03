@@ -1,0 +1,4 @@
+# This playbook depends on the python playbook
+---
+- name: ansible | install ansible
+  pip: name=ansible

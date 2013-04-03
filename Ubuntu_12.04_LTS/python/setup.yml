@@ -1,0 +1,11 @@
+- name: python | install
+  action: apt pkg=$item state=installed
+  with_items:
+    - python
+    - python-setuptools
+    - python-paramiko
+    - python-jinja2
+    - python-yaml
+
+- name: python | install pip
+  easy_install: name=pip
