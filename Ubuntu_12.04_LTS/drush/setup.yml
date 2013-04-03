@@ -25,5 +25,6 @@
   only_if: "'${drush_exists.stdout}' == ''"
 
 - name: drush | init drush
+  sudo: false
   command: drush
 
