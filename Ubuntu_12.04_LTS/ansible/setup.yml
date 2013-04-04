@@ -2,3 +2,6 @@
 ---
 - name: ansible | install ansible
   pip: name=ansible
+
+- name: ansible | default inventory
+  copy: src=$base/ansible/files/hosts dest=/etc/ansible mode=644

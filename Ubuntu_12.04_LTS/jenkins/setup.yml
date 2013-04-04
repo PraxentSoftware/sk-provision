@@ -17,13 +17,13 @@
   - restart jenkins
 
 - name: jenkins | vhost
-  template: src=$base/jenkins/templates/vhost.j2 dest=/etc/apache2/sites-available/jenkins
+  template: src=$base/jenkins/templates/vhost.j2 dest=/etc/apache2/sites-available/zjenkins
 
 - name: jenkins | enable required modules
   command: a2enmod proxy proxy_http
 
 - name: jenkins | enable vhost
-  command: a2ensite jenkins
+  command: a2ensite zjenkins
   notify:
   - restart apache
 

@@ -1,9 +1,20 @@
 ---
+- name: node | install dependencies
+  apt: pkg=$item state=installed
+  with_items:
+    - python-software-properties
+    - python
+    - g++
+    - make
+
 - name: node | get node repo
-  action: command add-apt-repository -y ppa:chris-lea/node.js creates=/etc/apt/sources.list.d/chris-lea-node_js-precise.list
+  apt_repository: repo=ppa:chris-lea/node.js state=present
 
 - name: node | update apt repo
   action: apt update-cache=yes
 
 - name: node | install node
   action: apt pkg=nodejs state=installed
+
+- name: node | install gyp
+  command: npm install -g node-gyp

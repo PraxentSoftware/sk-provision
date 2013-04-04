@@ -6,10 +6,10 @@
   action: command a2enmod rewrite vhost_alias
 
 - name: apache | ports configuration
-  template: src='$base/apache/templates/ports.j2' dest='/etc/apache2/ports.conf'
+  template: src=$base/apache/templates/ports.j2 dest=/etc/apache2/ports.conf
 
 - name: apache | vhost
-  template: src='$base/apache/templates/vhost.j2' dest='/etc/apache2/sites-available/prod-vhost'
+  template: src=$base/apache/templates/vhost.j2 dest=/etc/apache2/sites-available/prod-vhost
 
 - name: apache | disable default site
   action: command a2dissite default

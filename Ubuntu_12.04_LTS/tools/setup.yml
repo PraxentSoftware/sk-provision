@@ -22,6 +22,12 @@
 - name: bash prompt
   action: copy src='$base/tools/files/bash-prompt.sh' dest='/etc/profile.d/bash-prompt.sh' mode='755'
 
+- name: remove local pofile # By default put bash orverrides in /etc/profile.d
+  file: path=.profile state=absent
+
+- name: remove local bashrc # By default put bash orverrides in /etc/profile.d
+  file: path=.bashrc state=absent
+
 - name: configure iptables
   action: copy src='$base/tools/files/iptables-rules' dest='/etc/iptables-rules' mode='644'
 
