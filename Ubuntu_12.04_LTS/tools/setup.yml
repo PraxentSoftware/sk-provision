@@ -12,6 +12,7 @@
     - nmap
     - python
     - unzip
+    - zip
 
 - name: configure git
   action: copy src='$base/tools/files/gitconfig' dest='/etc/gitconfig' mode='644'
