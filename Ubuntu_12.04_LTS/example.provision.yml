@@ -1,14 +1,34 @@
+################################################################################
+# provision.yml
+#
+# Server provisioning script
+#
+# USAGE
+#
+# 1. Copy this file outside the provision repository
+# 2. Name it provision.yml
+# 3. Create a folder called provision_tasks
+# 4. Copy example.dev_tasks.yml and example.prod_tasks.yml into provision_tasks
+#    as dev_tasks.yml and prod_tasks.yml respectively.
+# 5. Optionally, create a folder called provision_overrides to contain
+#    environment specific variables (dev_vars.yml or prod_vars.yml).
+# 6. To execute:
+#        ansible-playbook provision.yml --extra-vars="hosts={string} user={string} base_path={path} server_type={string: dev|prod}"
+#
+################################################################################
+
 ---
-- hosts: web-servers
-  user: vagrant
+- hosts: $hosts
+  user: $user
   sudo: True
-  gather_facts: no  # Enable for vagrant boxes to save time
+  gather_facts: no  # Disable for vagrant boxes to save time
 
   vars:
     # Base path for includes and files
     # Must be set to absolute path of playbooks directory
-    base: /path/to/playbooks
-    env: dev # Set to dev or prod
+    base: $base_path
+    # Set the server environment to dev or prod
+    env: $server_type
 
   vars_files:
     - $base/apache/vars.yml
@@ -16,31 +36,17 @@
     - $base/php/vars.yml
     - $base/varnish/vars.yml
     - $base/jenkins/vars.yml
-    - provision_overrides/${env}_vars.yml # Enable for variable overrides for the current environment
+    # Enable for variable overrides for the current environment
+    #- provision_overrides/${env}_vars.yml
 
   tasks:
     # -= REQUIRED =-
     - include: $base/common/setup.yml
-
-    # -= OPTIONAL =-
-    - include: $base/python/setup.yml
-    - include: $base/ansible/setup.yml
-    - include: $base/apache/setup.yml
-    - include: $base/drush/setup.yml
-    - include: $base/php/setup.yml
-    - include: $base/phpcs/setup.yml
-    - include: $base/mysql/setup.yml
-    - include: $base/mongodb/setup.yml
-    - include: $base/node/setup.yml
-    - include: $base/redis/setup.yml
-    - include: $base/ruby-css/setup.yml
-    - include: $base/tools/setup.yml
-    - include: $base/varnish/setup.yml
-    - include: $base/jenkins/setup.yml
-  # - include: provision_overrides/setup.yml # Enable for custom tasks
+    # Load tasks specific to an environment
+    - include: provision_tasks/${env}_tasks.yml
 
   handlers:
-    # -= OPTIONAL =-
+    # Include all handlers even if some of these packages are not installed
     - include: $base/apache/handler.yml
     - include: $base/mysql/handler.yml
     - include: $base/drush/handler.yml
