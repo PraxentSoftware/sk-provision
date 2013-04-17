@@ -1,0 +1,10 @@
+---
+  # -= OPTIONAL =-
+  - include: $base/apache/setup.yml
+  - include: $base/drush/setup.yml
+  - include: $base/php/setup.yml
+  - include: $base/mysql/setup.yml
+  - include: $base/redis/setup.yml
+  - include: $base/tools/setup.yml
+  # - include: provision_overrides/${env}_setup.yml # Enable for custom tasks
+

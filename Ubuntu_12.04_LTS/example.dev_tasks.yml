@@ -1,0 +1,19 @@
+---
+  # -= OPTIONAL =-
+  - include: $base/python/setup.yml
+  - include: $base/ansible/setup.yml
+  - include: $base/apache/setup.yml
+  - include: $base/drush/setup.yml
+  - include: $base/php/setup.yml
+  - include: $base/phpcs/setup.yml
+  - include: $base/mysql/setup.yml
+  - include: $base/mongodb/setup.yml
+  - include: $base/node/setup.yml
+  - include: $base/redis/setup.yml
+  - include: $base/ruby-css/setup.yml
+  - include: $base/tools/setup.yml
+  - include: $base/varnish/setup.yml
+  - include: $base/jenkins/setup.yml
+  # - include: provision_overrides/${env}_setup.yml # Enable for custom tasks
+
+
