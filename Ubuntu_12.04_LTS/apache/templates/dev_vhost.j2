@@ -1,12 +1,12 @@
 ##
-# Production vhost on {{ apache_port }}
+# Development vhost on {{ apache_port }}
 #
 
 <VirtualHost *:{{ apache_port }}>
   ServerAdmin {{ apache_server_admin }}
 
-  # Will map [domain].[ext] to /var/www/[domain]/htdocs
-  VirtualDocumentRoot /var/www/%-2/htdocs
+  # Will map [user].[domain].[ext] to /home/[user]/www/[domain]/htdocs
+  VirtualDocumentRoot /home/%-3/www/%-2/htdocs
 
   UseCanonicalName Off
 
@@ -16,7 +16,7 @@
   CustomLog /var/log/apache2/access.log json
   {% endraw %}
 
-  <Directory /var/www/*>
+  <Directory /home/%-3/www/*>
     Options -Indexes +FollowSymLinks
 
     AllowOverride All

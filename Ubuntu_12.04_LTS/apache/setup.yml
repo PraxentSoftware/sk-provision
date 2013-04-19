@@ -9,12 +9,17 @@
   template: src=$base/apache/templates/ports.j2 dest=/etc/apache2/ports.conf
 
 - name: apache | vhost
-  template: src=$base/apache/templates/vhost.j2 dest=/etc/apache2/sites-available/prod-vhost
+  template: src=$base/apache/templates/prod_vhost.j2 dest=/etc/apache2/sites-available/prod-vhost
+  when_string: ${env} == "prod"
+
+- name: apache | vhost
+  template: src=$base/apache/templates/dev_vhost.j2 dest=/etc/apache2/sites-available/dev-vhost
+  when_string: ${env} == "dev"
 
 - name: apache | disable default site
   action: command a2dissite default
 
 - name: apache | enable vhost
-  action: command a2ensite prod-vhost
+  action: command a2ensite ${env}-vhost
   notify:
   - restart apache
