@@ -7,6 +7,6 @@
   only_if: "'${phpcs_exists.stdout}' == ''"
 
 - name: phpcs | install coder
-  command: drush dl coder --destination=.drush creates=.drush/coder
+  command: drush dl coder --destination=/usr/share/drush/commands creates=/usr/share/drush/commands/coder
   notify:
     - clear drush cache

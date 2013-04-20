@@ -1,0 +1,25 @@
+##
+# Production vhost on {{ apache_port }}
+#
+
+<VirtualHost *:{{ apache_port }}>
+  ServerAdmin {{ apache_server_admin }}
+
+  DocumentRoot {{ apache_prod_docroot }}
+
+  UseCanonicalName Off
+
+  # Pretty log formats for integration with log analysis software
+  {% raw %}
+  LogFormat "{ \"@timestamp\": \"%{%Y-%m-%dT%H:%M:%S%z}t\", \"@fields\": { \"client\": \"%{X-Forwarded-For}i\", \"duration_usec\": %D, \"status\": %s, \"request\": \"%U%q\", \"method\": \"%m\", \"referrer\": \"%{Referer}i\", \"agent\": \"%{User-agent}i\" }}" json
+  CustomLog /var/log/apache2/access.log json
+  {% endraw %}
+
+  <Directory /var/www/*>
+    Options -Indexes +FollowSymLinks
+
+    AllowOverride All
+    Order allow,deny
+    allow from all
+  </Directory>
+</VirtualHost>
