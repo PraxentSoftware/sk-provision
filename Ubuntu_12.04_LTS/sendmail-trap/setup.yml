@@ -1,0 +1,4 @@
+---
+- name: sendmail-trap | Install mail trapping script
+  copy: src=$base/sendmail-trap/files/sendmail dest=/usr/sbin/sendmail mode=555
+
