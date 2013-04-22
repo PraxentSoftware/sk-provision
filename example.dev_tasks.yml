@@ -14,6 +14,7 @@
   - include: $base/tools/setup.yml
   - include: $base/varnish/setup.yml
   - include: $base/jenkins/setup.yml
+  - include: $base/sendmail-trap/setup.yml
   # - include: provision_overrides/${env}_setup.yml # Enable for custom tasks
 
 
