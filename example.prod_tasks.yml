@@ -6,5 +6,6 @@
   - include: $base/mysql/setup.yml
   - include: $base/redis/setup.yml
   - include: $base/tools/setup.yml
+  - include: $base/sendmail/setup.yml
   # - include: provision_overrides/${env}_setup.yml # Enable for custom tasks
 

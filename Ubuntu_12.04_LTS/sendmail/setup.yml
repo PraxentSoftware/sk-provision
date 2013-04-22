@@ -1,0 +1,3 @@
+---
+- name: Sendmail | install
+  apt: pkg=sendmail state=installed
