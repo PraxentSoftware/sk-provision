@@ -1,0 +1,9 @@
+---
+- hosts: $hosts
+  user: $user
+
+  tasks:
+    - name: apt-get update
+      action: apt update-cache=yes
+
+    - include: setup.yml
