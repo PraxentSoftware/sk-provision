@@ -3,13 +3,16 @@
   action: apt pkg=rubygems state=installed
 
 - name: ruby-css | install sass
-  action: command gem install sass creates=/usr/local/bin/sass
-
-- name: ruby-css | install susy (no more --pre required as it is 1.0 now)
-  action: command gem install susy
+  gem: name=sass state=latest
 
 - name: ruby-css | install compass
-  action: command gem install compass creates=/usr/local/bin/compass
+  gem: iname=compass state=latest
+
+- name: ruby-css | install 960 plugin
+  gem: name=compass-960-plugin state=latest
 
 - name: ruby-css | install aurora (which will install breakpoint, sass-buttons, respond-to)
-  action: command gem install compass-aurora
+  gem: name=compass-aurora state=latest
+
+- name: ruby-css | install susy (no more --pre required as it is 1.0 now)
+  gem: name=susy state=latest
