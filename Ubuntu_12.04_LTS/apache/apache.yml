@@ -1,12 +1,12 @@
 ---
-- hosts: webservers
+- hosts: $hosts
   user: $user
 
-  vars:
-    base: .
+  vars-files:
+    - vars.yml
 
   tasks:
-    - name: apache | update apt repo
+    - name: apt-get update
       action: apt update-cache=yes
 
     - include: setup.yml
