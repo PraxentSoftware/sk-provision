@@ -1,0 +1,9 @@
+---
+- name: drupal power theming | install 960 plugin
+  gem: name=compass-960-plugin state=latest
+
+- name: drupal power theming | install aurora (which will install breakpoint, sass-buttons, respond-to)
+  gem: name=compass-aurora state=latest
+
+- name: drupal power theming | install susy (no more --pre required as it is 1.0 now)
+  gem: name=susy state=latest
