@@ -11,10 +11,10 @@
   apt_repository: repo=ppa:chris-lea/node.js state=present
 
 - name: node | update apt repo
-  action: apt update-cache=yes
+  apt: update-cache=yes
 
 - name: node | install node
-  action: apt pkg=nodejs state=installed
+  apt: pkg=nodejs state=installed
 
 - name: node | install gyp
-  command: npm install -g node-gyp
+  npm: name=node-gyp global=yes state=present

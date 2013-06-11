@@ -1,6 +1,7 @@
 ---
 - hosts: $hosts
   user: $user
+  sudo: yes
 
   tasks:
     - name: update apt repo
