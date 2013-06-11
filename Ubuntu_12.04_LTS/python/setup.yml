@@ -6,6 +6,7 @@
     - python-paramiko
     - python-jinja2
     - python-yaml
+    - python-mysqldb
 
 - name: python | install pip
   easy_install: name=pip

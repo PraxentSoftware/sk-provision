@@ -34,4 +34,3 @@
 
 - name: drush | configure drushrc
   copy: src=$base/drush/files/drushrc.php dest=/etc/drush
-

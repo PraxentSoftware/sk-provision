@@ -1,2 +1,4 @@
 ---
+varnish_port: '80'
+varnish_proxy: '8080'
 varnish_memory: '1G'
